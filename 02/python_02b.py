@@ -41,12 +41,29 @@ score_table = [
     [6,0,3]
 ]
 
+# X means you need to lose, 
+# Y means you need to end the round in a draw, 
+# Z means you need to win.
+
+#   XYZ       XYZ      XYZ
+#  +---      +---     +---
+# R|SRP     R|ZXY    R|201
+# P|RPS ->  P|XYZ -> P|012
+# S|PSR     S|YZR    S|120
+
+strategy_table = [
+    [2,0,1],
+    [0,1,2],
+    [1,2,0]
+]
+
 score = 0
 
 for round in lines:
     o = round[0]
-    p = round[1]
+    s = round[1]
 
-    score = score + player[p]+1 + score_table[opponent[o]][player[p]]
+    p = strategy_table[opponent[o]][player[s]]
+    score = score + p + 1 + score_table[opponent[o]][p]
 
 print(score)
