@@ -1,6 +1,12 @@
 #!/usr/bin/python3
 input = "./input.txt"
 
+#
+# Advent of Code 2022
+# Day 1, part 2
+# https://github.com/krcs/aoc-2022
+#
+
 def read_lines(file):
     result = []
 

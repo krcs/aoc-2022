@@ -1,4 +1,11 @@
 #!/usr/bin/python3
+
+#
+# Advent of Code 2022
+# Day 2, part 1
+# https://github.com/krcs/aoc-2022
+#
+
 input = "./input.txt"
 
 def read_lines(file):
@@ -35,6 +42,14 @@ opponent = {
 
 # column - player
 # row - opponent
+
+#       RPS
+#       XYZ
+#      +---
+#  R(A)|360
+#  P(B)|036
+#  S(C)|603
+
 score_table = [
     [3,6,0],
     [0,3,6],

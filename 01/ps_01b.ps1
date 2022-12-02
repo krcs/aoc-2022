@@ -1,3 +1,9 @@
+#
+# Advent of Code 2022
+# Day 1, part 2
+# https://github.com/krcs/aoc-2022
+#
+
 $input = "./input.txt"
 
 $c = 0
