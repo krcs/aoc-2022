@@ -8,4 +8,4 @@ Python, PowerShell, JavaScript
 
 ### Day 2
 
-Python
+Python, JavaScript
