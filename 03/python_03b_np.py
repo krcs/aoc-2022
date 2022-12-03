@@ -1,10 +1,12 @@
 #!/usr/bin/python3
-
 #
 # Advent of Code 2022
-# Day 3, part 1
+# Day 3, part 2
 # https://github.com/krcs/aoc-2022
 #
+
+import numpy as np
+from functools import reduce
 
 input = "./input.txt"
 
@@ -40,13 +42,18 @@ def sum_priorities(items):
     return result
 
 result = 0
+groups = []
 
-for rucksack in lines:
-    compartment_1 = rucksack[0:len(rucksack)//2]
-    compartment_2 = rucksack[len(rucksack)//2:]
+for idx in range(0,len(lines)):
+    groups.append(list(lines[idx]))
 
-    items = set(compartment_1).intersection(set(compartment_2))
+    if idx%3!=2:
+        continue
+
+    items = reduce(np.intersect1d, (groups[0], groups[1], groups[2]))
 
     result = result + sum_priorities(items)
+
+    groups=[]
 
 print(result)

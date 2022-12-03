@@ -22,18 +22,22 @@ def read_lines(file):
                 break
     return result
 
+lines = read_lines(input)
+
+a = ord('a')
+z = ord('z')
+A = ord('A')
+Z = ord('Z')
+
 def sum_priorities(items): 
     result = 0
     for item in items:
         i = ord(item)
-        if i in range(ord('a'),ord('z')+1):
+        if a <= i <= z:
             result = result + i - 96
-        elif i in range(ord('A'),ord('Z')+1):
+        elif A <= i <= Z:
             result = result + i - 38
     return result
-
-
-lines = read_lines(input)
 
 result = 0
 groups = []
