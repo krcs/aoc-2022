@@ -9,3 +9,7 @@ Python, PowerShell, JavaScript
 ### Day 2
 
 Python, JavaScript
+
+### Day 3
+
+Python
