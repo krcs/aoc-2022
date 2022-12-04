@@ -13,3 +13,7 @@ Python, JavaScript
 ### Day 3
 
 Python, PowerShell, Raku
+
+### Day 4
+
+Python
