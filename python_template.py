@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+#
+# Advent of Code 2022
+# Day x, part x
+# https://github.com/krcs/aoc-2022
+#
 input = "./input.txt"
 
 def read_lines(file):
