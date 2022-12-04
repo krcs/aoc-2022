@@ -23,14 +23,17 @@ def read_lines(file):
 
 lines = read_lines(input)
 
+is_full_overlap = lambda s1,e1,s2,e2: (s1>=s2 and e1<=e2) or (s2>=s1 and e2<=e1)
+get_range_pair_from_str = lambda s: list(map(int,s.split('-')))
+
 result = 0
 
 for line in lines:
     pair_range = line.split(',')
-    p1 = list(map(int,pair_range[0].split('-')))
-    p2 = list(map(int,pair_range[1].split('-')))
-    overlap = (p1[0]>=p2[0] and p1[1]<=p2[1]) or (p2[0]>=p1[0] and p2[1]<=p1[1])
-    if overlap:
+    p1 = get_range_pair_from_str(pair_range[0])
+    p2 = get_range_pair_from_str(pair_range[1])
+
+    if is_full_overlap(p1[0],p1[1],p2[0],p2[1]):
         result += 1
 
 print(result)

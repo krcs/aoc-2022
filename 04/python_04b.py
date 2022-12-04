@@ -23,12 +23,15 @@ def read_lines(file):
 
 lines = read_lines(input)
 
+get_range_pair_from_str = lambda s: list(map(int,s.split('-')))
+
 result = 0
 
 for line in lines:
     pair_range = line.split(',')
-    p1 = list(map(int,pair_range[0].split('-')))
-    p2 = list(map(int,pair_range[1].split('-')))
+    p1 = get_range_pair_from_str(pair_range[0])
+    p2 = get_range_pair_from_str(pair_range[1])
+
     if p1[0] <= p2[1] and p1[1] >= p2[0]:
         result+=1
 
