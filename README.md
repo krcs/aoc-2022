@@ -4,7 +4,7 @@ https://adventofcode.com/2022
 
 ### Day 1
 
-Python, PowerShell, JavaScript
+Python, PowerShell, JavaScript, Raku
 
 ### Day 2
 
