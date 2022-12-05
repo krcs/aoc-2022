@@ -4,8 +4,6 @@
 # Day 5, part 1
 # https://github.com/krcs/aoc-2022
 #
-import re
-
 input = "./input.txt"
 
 def get_stacks_and_moves(filename):
@@ -26,7 +24,7 @@ def get_stacks_and_moves(filename):
             if len(line.strip())==0:
                 is_moves_section = True
 
-                number_of_stacks = max(map(int,re.findall('\d+',stacks_lines[-1])))
+                number_of_stacks= len([ n for n in stacks_lines[-1].split(' ') if len(n) > 0 ])
                 stacks = [ [] for n in range(number_of_stacks) ]
                 for stack_str in reversed(stacks_lines[:-1]):
                     sidx = 0
