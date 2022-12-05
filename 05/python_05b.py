@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #
 # Advent of Code 2022
-# Day 5, part 1
+# Day 5, part 2
 # https://github.com/krcs/aoc-2022
 #
 input = "./input.txt"
@@ -60,8 +60,9 @@ stacks, moves = get_stacks_and_moves(input)
 #print()
 for move in moves:
     #print(move)
-    for n in range(move['move']):
-        stacks[move['to']-1].append(stacks[move['from']-1].pop())
+    for n in range(move['move'],0,-1):
+        shift = len(stacks[move['from']-1])-n
+        stacks[move['to']-1].append(stacks[move['from']-1].pop(shift))
     #print_stacks(stacks)
     #print()
 
