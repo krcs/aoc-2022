@@ -17,3 +17,7 @@ Python, PowerShell, Raku
 ### Day 4
 
 Python, PowerShell, Raku
+
+### Day 5
+
+Python
