@@ -19,8 +19,6 @@ def get_stacks_and_moves(filename):
             if not line:
                 break
 
-            line = line.replace('\n','')
-
             if len(line.strip())==0:
                 is_moves_section = True
 
