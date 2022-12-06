@@ -2,7 +2,7 @@
 # Advent of Code 2022
 # Day 6, part 1 and 2
 # https://github.com/krcs/aoc-2022
-
+#
 
 sub find_message($signal, $packet_size) {
     my $result = 0;

@@ -24,4 +24,4 @@ Python, JavaScript, Raku
 
 ### Day 6
 
-Python, Raku
+Python, Raku, JavaScript
