@@ -7,7 +7,7 @@ my $is_moves_section = False;
 my @moves = ();
 my @stacks = ();
 
-for './test.txt'.IO.lines -> $line {
+for './input.txt'.IO.lines -> $line {
     when $line.chars == 0 {
         $is_moves_section = True;
         next;
@@ -27,9 +27,9 @@ for './test.txt'.IO.lines -> $line {
     when ($is_moves_section) {
         my $move = $line.split(' ');
         @moves.push({
-            'move' => $move[1],
-            'from' => $move[3],
-              'to' => $move[5]
+            'move' => +$move[1],
+            'from' => +$move[3],
+              'to' => +$move[5]
         });
     }
 }
@@ -53,7 +53,7 @@ sub clone_array(@source) {
 }
 
 my @part1_stacks = @stacks;
-my @part2_stacks = clone_array(@stacks); 
+my @part2_stacks = clone_array(@stacks);
 
 for @moves -> %move {
     my $moves = %move<move>;
@@ -62,13 +62,9 @@ for @moves -> %move {
 
     my $shift = @part2_stacks[$from].elems-$moves;
     for 0..$moves-1 -> $m {
-        @part1_stacks[$to].push(@part1_stacks[$from].pop()); 
+        @part1_stacks[$to].push(@part1_stacks[$from].pop());
     }
-
-    # //TODO
-    #@part2_stacks[$to] = 
-    #    (@part2_stacks[$to],@part2_stacks[$from].splice($shift,$moves+0))
-
+    @part2_stacks[$to].append(@part2_stacks[$from].splice($shift, $moves));
 }
 say "Part1: {get_tops_from_stacks @part1_stacks}";
 say "Part2: {get_tops_from_stacks @part2_stacks}";
