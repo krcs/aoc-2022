@@ -1,6 +1,6 @@
 #
 # Advent of Code 2022
-# Day 1, part 1 and 2
+# Day 5, part 1 and 2
 # https://github.com/krcs/aoc-2022
 #
 my $is_moves_section = False;
