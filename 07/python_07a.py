@@ -7,24 +7,24 @@
 input = "./input.txt"
 
 def read_lines(file):
-    result = []
+    le100k = []
 
     with open(input,'r') as f:
         while True:
             line = f.readline()
 
             if len(line)>0:
-                result.append(line.strip())
+                le100k.append(line.strip())
 
             if not line:
                 break
-    return result
+    return le100k
 
 lines = read_lines(input)
 
-le100000 = lambda size : size if size < 100000 else 0
+is_less_equal_100k = lambda size : size if size < 100000 else 0
 
-def get_tree(current_folder, idx, lines, result):
+def get_tree(current_folder, idx, lines, le100k):
     sum_size = 0
     while idx < len(lines):
         if lines[idx].startswith('$'):
@@ -38,10 +38,12 @@ def get_tree(current_folder, idx, lines, result):
 
                 if arg == '..':
                     current_folder['size'] = sum_size
-                    result.append(le100000(sum_size))
+
+                    le100k.append(is_less_equal_100k(sum_size))
+
                     return current_folder, idx;
                 else:
-                    current_folder[arg], idx = get_tree(current_folder[arg], idx+1, lines, result)
+                    current_folder[arg], idx = get_tree(current_folder[arg], idx+1, lines, le100k)
                     sum_size += current_folder[arg]['size']
 
             if cmd == 'ls':
@@ -59,10 +61,13 @@ def get_tree(current_folder, idx, lines, result):
 
         idx+=1
     current_folder['size'] = sum_size
-    result.append(le100000(sum_size))
+
+    le100k.append(is_less_equal_100k(sum_size))
+
     return current_folder, idx
 
-result = []
-tree, _ = get_tree({ '/' : {} }, 0, lines, result)
+part1 = []
 
-print("Part1:",sum(result))
+tree, _ = get_tree({ '/' : {} }, 0, lines, part1)
+
+print("Part1:",sum(part1))
