@@ -9,8 +9,8 @@ const fs = require('fs');
 
 let lines = fs.readFileSync('./input.txt', 'UTF-8')
 
-lines = lines.trim().split('\r\n');
+lines = lines.trim().split('\n');
 
 for (let line of lines) {
-    console.log(score);
+    console.log(line);
 }
