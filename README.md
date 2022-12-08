@@ -29,3 +29,7 @@ Python, Raku, JavaScript
 ### Day 7
 
 Python
+
+### Day 8
+
+Python
