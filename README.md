@@ -32,4 +32,4 @@ Python, JavaScript
 
 ### Day 8
 
-Python
+Python, JavaScript
