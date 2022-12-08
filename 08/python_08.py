@@ -30,7 +30,6 @@ visible_count = 0
 
 for r in range(rows_count):
     for c in range(cols_count):
-        idx = 1
         top_idx, bottom_idx, left_idx, right_idx = r,r,c,c
 
         top_visible = True
