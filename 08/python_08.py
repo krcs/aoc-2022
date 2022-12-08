@@ -106,12 +106,13 @@ for r in range(rows_count):
             if top_edge and bottom_edge and left_edge and right_edge:
                 break
 
-        if not any([top_visible, bottom_visible, left_visible, right_visible]):
+        if not (top_visible or bottom_visible or left_visible or right_visible):
             visible_count += 1
 
-        distance = top_distance*bottom_distance*left_distance*right_distance
+        distance = top_distance * bottom_distance * left_distance * right_distance
+
         if distance > best_distance:
             best_distance = distance
 
-print("Part 1:",rows_count*cols_count-visible_count)
-print("Part 2:",best_distance)
+print("Part 1:", rows_count * cols_count - visible_count)
+print("Part 2:", best_distance)

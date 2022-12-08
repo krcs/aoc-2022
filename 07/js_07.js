@@ -28,21 +28,17 @@ function get_tree(current_folder, idx, lines, le100k) {
 
                     return [ current_folder, idx ];
                 } else {
-                    const result = get_tree(current_folder[arg], idx+1, lines, le100k);
-                    current_folder[arg] = result[0];
-                    idx = result[1];
+                    [ current_folder[arg] , idx ] = get_tree(current_folder[arg], idx+1, lines, le100k);
                     sum_size += current_folder[arg]['size'];
                 }
             }
         } else if (lines[idx].startsWith('dir')) {
-            const name = lines[idx].split(' ')[1];
+            const [ _, name  ] = lines[idx].split(' ');
             current_folder[name] = {};
         } else {
-            const file_row = lines[idx].split(' ');
-            name = file_row[1];
-            size = parseInt(file_row[0]);
-            current_folder[name] = size;
-            sum_size += size;
+            const [ size, name ] = lines[idx].split(' ');
+            current_folder[name] = parseInt(size);
+            sum_size += current_folder[name];
         }
         idx++;
     }
@@ -65,12 +61,9 @@ function get_size_of_directory_to_delete(tree, min_space_to_free, result) {
 }
 
 let part1 = [];
-const tree = get_tree({ '/' : {} }, 0, lines, part1)[0];
+const [ tree, _ ] = get_tree({ '/' : {} }, 0, lines, part1);
 
-let sum = 0;
-part1.forEach( s => sum += s );
-
-console.log("Part 1:",sum);
+console.log("Part 1:", eval(part1.join('+')));
 
 const total_disk_size = 70_000_000;
 const required_size = 30_000_000;
