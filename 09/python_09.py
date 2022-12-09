@@ -23,34 +23,20 @@ def read_lines(file):
 lines = read_lines(input)
 
 def make_move(h, t):
-
     dy = h['y'] - t['y']
     dx = h['x'] - t['x']
 
-    direction_x = None
-    direction_y = None
-
-    if dy > 0:
-        direction_y = 'U'
-    elif dy < 0:
-        direction_y = 'D' 
-
-    if dx < 0: 
-        direction_x = 'L' 
-    elif dx > 0: 
-        direction_x = 'R' 
-
     if abs(dy) > 1 or abs(dx) > 1:
-       if direction_y == 'U':
+        if dy > 0:
             t['y'] += 1
 
-       if direction_y == 'D':
+        if dy < 0:
             t['y'] -= 1
 
-       if direction_x == 'L':
+        if dx < 0:
             t['x'] -= 1
 
-       if direction_x == 'R':
+        if dx > 0:
             t['x'] += 1
 
 def get_number_of_unique_tail_positions(rope):
@@ -58,7 +44,7 @@ def get_number_of_unique_tail_positions(rope):
 
     for line in lines:
         splited = line.split(' ')
-        move = [ splited[0], int(splited[1]) ]
+        move = ( splited[0], int(splited[1]) )
 
         for step in range(1,move[1]+1):
             direction = move[0]
