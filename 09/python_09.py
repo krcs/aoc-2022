@@ -53,7 +53,7 @@ def make_move(h, t):
        if direction_x == 'R':
             t['x'] += 1
 
-def get_number_of_unique_tail_position(rope):
+def get_number_of_unique_tail_positions(rope):
     tail_positions = set()
 
     for line in lines:
@@ -80,7 +80,7 @@ def get_number_of_unique_tail_position(rope):
     return len(tail_positions)
 
 rope_part_1 = [ {'x':0, 'y': 0 } for n in range(2) ]
-print("Part 1:", get_number_of_unique_tail_position(rope_part_1))
+print("Part 1:", get_number_of_unique_tail_positions(rope_part_1))
 
 rope_part_2 = [ {'x':0, 'y': 0 } for n in range(10) ]
-print("Part 2:", get_number_of_unique_tail_position(rope_part_2))
+print("Part 2:", get_number_of_unique_tail_positions(rope_part_2))
