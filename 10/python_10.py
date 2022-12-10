@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #
 # Advent of Code 2022
-# Day 10, part 1
+# Day 10, part 1 and 2
 # https://github.com/krcs/aoc-2022
 #
 input = "./input.txt"
@@ -31,18 +31,21 @@ end_execution_cycle = 0
 
 signal_strength_sum = 0
 
+sprite_position = range(X - 1, X + 2)
+crt_row = 0
+CRT = [[]]
+pixel_idx = 0
+
 while True:
 
-    if not instruction:
+    if instruction_pointer >= len(lines): 
+        break
 
-        if instruction_pointer >= len(lines): 
-            break
-        
+    if not instruction:
         instruction, *arg = lines[instruction_pointer].split(' ')
 
         if instruction == 'noop':
             end_execution_cycle = cycle
-
         elif instruction == 'addx':
             end_execution_cycle = cycle + 1
             if arg:
@@ -50,9 +53,16 @@ while True:
 
         instruction_pointer += 1
 
-    #print(f"Cycle:[{cycle}] - X={X}, I={instruction if instruction else '---'} V={V if V else '---'} EEC={end_execution_cycle} IP={instruction_pointer}")
+    CRT[crt_row] += "#" if pixel_idx in sprite_position else "."
 
-    if (cycle + 20) % 40 == 0 and cycle <= 220:
+    if cycle % 40 == 0:
+        crt_row += 1
+        pixel_idx = 0
+        CRT.append([])
+    else:
+        pixel_idx += 1
+
+    if (cycle + 20) % 40 == 0:
         signal_strength_sum += cycle * X
 
     if cycle == end_execution_cycle:
@@ -61,6 +71,10 @@ while True:
         end_execution_cycle = 0
         instruction, V  = [ None, None ]
 
+    sprite_position = range(X - 1, X + 2)
     cycle += 1
 
 print("Part 1:", signal_strength_sum)
+print("part 2:")
+for line in CRT:
+    print("".join(line))

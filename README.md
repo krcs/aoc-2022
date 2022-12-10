@@ -37,3 +37,7 @@ Python, JavaScript
 ### Day 9
 
 Python
+
+### Day 10
+
+Python
