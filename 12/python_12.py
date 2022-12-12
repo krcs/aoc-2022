@@ -19,11 +19,11 @@ def read_lines(file):
                 break
     return result
 
-ELEVATIONS = { chr(a): a-97 for a in range(ord('a'), ord('z')+1) }
+ELEVATIONS = { chr(a): a for a in range(ord('a'), ord('z')+1) }
 ELEVATIONS['S'] = ELEVATIONS['a']
 ELEVATIONS['E'] = ELEVATIONS['z']
 
-offsets = [ (1,0), (-1,0), (0,1), (0, -1) ]
+directions = [ (1,0), (-1,0), (0,1), (0, -1) ]
 
 def get_pos_of_char(char, grid):
     result = []
@@ -46,7 +46,7 @@ def bfs(start_position, grid):
         if  current_value == 'E':
             return steps
 
-        for ro, co in offsets:
+        for ro, co in directions:
             next_move = (r + ro, c + co)
 
             if next_move in visited:
