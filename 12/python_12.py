@@ -22,6 +22,7 @@ def read_lines(file):
 WEIGHT = { chr(a): a-97 for a in range(ord('a'), ord('z')+1) }
 WEIGHT['S'] = WEIGHT['a']
 WEIGHT['E'] = WEIGHT['z']
+
 offsets = [ (1,0), (-1,0), (0,1), (0, -1) ]
 
 def get_pos_of_char(char, grid):
@@ -32,22 +33,17 @@ def get_pos_of_char(char, grid):
                 result.append((row, col))
     return result
 
-def can_move(next_move, current_value, grid):
-    r, c = next_move
-    if r < 0 or c < 0 or r >= len(grid) or c >= len(grid[0]):
-        return False
-
-    next_value = grid[r][c]
-    return WEIGHT[next_value] <= WEIGHT[current_value] + 1
-
 def bfs(start_position, grid):
     queue = [ (start_position, 0) ]
     visited = set(start_position)
+    GRID_WIDTH = len(grid[0])
+    GRID_HEIGHT = len(grid)
 
     while queue:
         (r, c), count = queue.pop(0)
+        current_value = grid[r][c]
 
-        if  grid[r][c] == 'E':
+        if  current_value == 'E':
             return count
 
         for ro, co in offsets:
@@ -56,7 +52,13 @@ def bfs(start_position, grid):
             if next_move in visited:
                 continue
 
-            if can_move(next_move, grid[r][c], grid):
+            if next_move[0] < 0 or next_move[0] >= GRID_HEIGHT \
+                or next_move[1] < 0 or next_move[1] >= GRID_WIDTH:
+                continue
+
+            next_value = grid[next_move[0]][next_move[1]]
+
+            if WEIGHT[next_value] <= WEIGHT[current_value] + 1:
                 visited.add(next_move)
                 queue.append((next_move, count + 1))
     return -1
