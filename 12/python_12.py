@@ -19,9 +19,9 @@ def read_lines(file):
                 break
     return result
 
-WEIGHT = { chr(a): a-97 for a in range(ord('a'), ord('z')+1) }
-WEIGHT['S'] = WEIGHT['a']
-WEIGHT['E'] = WEIGHT['z']
+ELEVATIONS = { chr(a): a-97 for a in range(ord('a'), ord('z')+1) }
+ELEVATIONS['S'] = ELEVATIONS['a']
+ELEVATIONS['E'] = ELEVATIONS['z']
 
 offsets = [ (1,0), (-1,0), (0,1), (0, -1) ]
 
@@ -40,11 +40,11 @@ def bfs(start_position, grid):
     GRID_HEIGHT = len(grid)
 
     while queue:
-        (r, c), count = queue.pop(0)
+        (r, c), steps = queue.pop(0)
         current_value = grid[r][c]
 
         if  current_value == 'E':
-            return count
+            return steps
 
         for ro, co in offsets:
             next_move = (r + ro, c + co)
@@ -58,9 +58,9 @@ def bfs(start_position, grid):
 
             next_value = grid[next_move[0]][next_move[1]]
 
-            if WEIGHT[next_value] <= WEIGHT[current_value] + 1:
+            if ELEVATIONS[next_value] <= ELEVATIONS[current_value]+1:
                 visited.add(next_move)
-                queue.append((next_move, count + 1))
+                queue.append((next_move, steps + 1))
     return -1
 
 lines = read_lines(input)
@@ -77,11 +77,11 @@ print("Part 1:", part1)
 part2 = 0
 start_positions = get_pos_of_char('a', grid)
 for pos in start_positions:
-    count = bfs(pos, grid)
-    if count < 0:
+    steps = bfs(pos, grid)
+    if steps < 0:
         continue
 
-    if part2 == 0 or count < part2:
-        part2 = count
+    if part2 == 0 or steps < part2:
+        part2 = steps
 
 print("Part 2:", part2)
