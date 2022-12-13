@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 #
 # Advent of Code 2022
-# Day 13, part 1
+# Day 13, part 1 and 2
 # https://github.com/krcs/aoc-2022
 #
-input = "./test.txt"
+input = "./input.txt"
 
 def read_lines(file):
     result = []
@@ -48,29 +48,46 @@ def compare(left, right):
     for idx in range(n):
        result = compare(left[idx], right[idx])
        if result != None:
-           break
+           return result
 
-    #if result == None:
-    #    print(result, len(left),len(right))
+    if result == None and len(left) != len(right):
+        return len(left) < len(right)
+
+def get_pairs(lines):
+    pairs = []
+    pair = []
+    for line in lines:
+        if not line:
+            pairs.append(pair)
+            pair = []
+        else: 
+            pair.append(eval(line))
+    pairs.append(pair)
+    return pairs
+
+def part2(packets):
+    p1,p2 = packets[-2:]
+
+    result = 1
+
+    for i in range(0, len(packets)-1):
+        for j in range(i+1, len(packets)):
+            if not compare(packets[i], packets[j]):
+                packets[i], packets[j] = packets[j], packets[i]
+        if packets[i] == p1 or packets[i] == p2:
+            result *= i+1
 
     return result
 
-pairs = []
-pair = []
+pairs = get_pairs(lines)
 
-for line in lines:
-    if not line:
-        pairs.append(pair)
-        pair = []
-    else: 
-        pair.append(eval(line))
-
-pairs.append(pair)
-
+part1 = 0
 for idx, pair in enumerate(pairs):
-    c = compare(pair[0], pair[1])
-    print(f"Pair [{idx}]:  {pair} - {c}")
+    if compare(pair[0], pair[1]):
+        part1 += idx + 1
 
-#pair = pairs[3]
-#print(f"Result: {compare(pair[0], pair[1])}")
-#
+print("Part 1:", part1)
+
+part2 = part2(sum(pairs,[])+[ [[2]], [[6]] ])
+
+print("Part 2:", part2)
