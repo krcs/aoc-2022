@@ -9,7 +9,7 @@ input = "./input.txt"
 def read_lines(file):
     result = []
 
-    with open(input,'r') as f:
+    with open(input, 'r') as f:
         while True:
             line = f.readline()
 
@@ -66,7 +66,7 @@ def get_pairs(lines):
     return pairs
 
 def part2(packets):
-    p1,p2 = packets[-2:]
+    p1, p2 = packets[-2:]
 
     result = 1
 
@@ -74,6 +74,7 @@ def part2(packets):
         for j in range(i+1, len(packets)):
             if not compare(packets[i], packets[j]):
                 packets[i], packets[j] = packets[j], packets[i]
+
         if packets[i] == p1 or packets[i] == p2:
             result *= i+1
 
@@ -88,6 +89,6 @@ for idx, pair in enumerate(pairs):
 
 print("Part 1:", part1)
 
-part2 = part2(sum(pairs,[])+[ [[2]], [[6]] ])
+part2 = part2(sum(pairs, [])+[ [[2]], [[6]] ])
 
 print("Part 2:", part2)
