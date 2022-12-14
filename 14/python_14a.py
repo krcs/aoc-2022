@@ -32,7 +32,7 @@ def generate_board(lines):
 
     rock_lines = []
     minX, maxX = -1, 0
-    minY, maxY = -1, 0
+    maxY = 0
 
     line_points = []
 
@@ -54,16 +54,11 @@ def generate_board(lines):
             if point['y'] > maxY:
                 maxY = point['y']
 
-            if point['y'] < minY or minY == -1:
-                minY = point['y']
             points.append(point)
         line_points.append(points)
 
     for ridx in range(0, maxY+1):
-        row = []
-        for cidx in range(minX, maxX+1):
-            row.append('.')
-        board.append(row)
+        board.append([ '.' for cidx in range(minX, maxX+1)])
 
     for pl in line_points:
         for point in range(len(pl)-1):
@@ -74,12 +69,7 @@ def generate_board(lines):
             for y in range(s1_y, s2_y+1):
                 for x in range(s1_x, s2_x+1):
                     board[y][x] = '#'
-    return board, { 
-        'minX': minX, 
-        'minY': 0,
-        'maxX': maxX,
-        'maxY': maxY
-    }
+    return board, minX
 
 def move(current_pos, x, y, board):
     if current_pos['y'] >= 0:
@@ -90,14 +80,14 @@ def move(current_pos, x, y, board):
 
 lines = read_lines(input)
 
-board, edges = generate_board(lines)
+board, minX = generate_board(lines)
 
 HEIGHT = len(board)
 WIDTH = len(board[0])
 
 start_pos = { 
-    'x': 500 - edges['minX'],
-    'y': -1 - edges['minY']
+    'x': 500 - minX,
+    'y': -1
 }
 
 pos = start_pos.copy()
