@@ -82,7 +82,8 @@ def generate_board(lines):
     }
 
 def move(current_pos, x, y, board):
-    board[current_pos['y']][current_pos['x']] = '.'
+    if current_pos['y'] >= 0:
+        board[current_pos['y']][current_pos['x']] = '.'
     current_pos['x'] = x
     current_pos['y'] = y
     board[current_pos['y']][current_pos['x']] = 'o'
@@ -96,7 +97,7 @@ WIDTH = len(board[0])
 
 start_pos = { 
     'x': 500 - edges['minX'],
-    'y': 0 - edges['minY']
+    'y': -1 - edges['minY']
 }
 
 pos = start_pos.copy()

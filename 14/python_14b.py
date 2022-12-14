@@ -56,7 +56,9 @@ def generate_board(lines):
 
             if point['y'] < minY or minY == -1:
                 minY = point['y']
+
             points.append(point)
+
         line_points.append(points)
 
     for ridx in range(0, maxY+1):
@@ -82,7 +84,8 @@ def generate_board(lines):
     }
 
 def move(current_pos, x, y, board):
-    board[current_pos['y']][current_pos['x']] = '.'
+    if current_pos['y'] >= 0:
+        board[current_pos['y']][current_pos['x']] = '.'
     current_pos['x'] = x
     current_pos['y'] = y
     board[current_pos['y']][current_pos['x']] = 'o'
@@ -111,17 +114,12 @@ start_pos = {
 
 pos = start_pos.copy()
 csand = 1
-
 board.append(['.' for r in range(WIDTH) ])
 board.append(['#' for r in range(WIDTH) ])
 
-while True: #for step in range(806):
+while True:
     x = pos['x']
     y = pos['y'] + 1
-    #print(f"Step {step} {pos} {csand}")
-    if y>=len(board):
-        print(x,y, len(board), len(board[0]))
-        print_board(board)
 
     if board[y][x] == '.':
         move(pos, x, y, board)
