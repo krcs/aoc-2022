@@ -18,14 +18,3 @@ https://adventofcode.com/2022
 |  12 | Python                               | Solved |
 |  13 | Python                               | Solved |
 |  14 | Python                               | Solved |
-|  15 |                                      |        |
-|  16 |                                      |        |
-|  17 |                                      |        |
-|  18 |                                      |        |
-|  19 |                                      |        |
-|  20 |                                      |        |
-|  21 |                                      |        |
-|  22 |                                      |        |
-|  23 |                                      |        |
-|  24 |                                      |        |
-|  25 |                                      |        |
